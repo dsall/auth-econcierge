@@ -1,10 +1,20 @@
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var User = require('../models/user');
 
+var User = require('../models/user');
 
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
+
+passport.serializeUser(function (user, done) {
+	done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+	User.findById(id, function (err, user) {
+		done(err, user);
+	});
+})
+
+
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -20,4 +30,3 @@ passport.use(new LocalStrategy(
     });
   }
 ));
-
