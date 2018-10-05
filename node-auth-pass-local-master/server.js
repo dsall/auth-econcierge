@@ -10,9 +10,9 @@ var passport = require('passport');
 
 var config = require('./config/database');
 var port = process.env.PORT || 3000;
-mongoose.connect(config.db,{
-    useMongoClient : true
-});
+mongoose.connect(
+    "mongodb+srv://matt:1EQI2P6yWRoMz3qg@cluster0-exl40.mongodb.net/Face-Recog",  { useNewUrlParser: true }
+  );
 
 require('./config/passport')(passport);
 app.use(bodyParser.json());
