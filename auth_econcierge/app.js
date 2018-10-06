@@ -81,6 +81,17 @@ app.get('/', Authenticated, function(req, res) {
   }
 
 
+  app.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.send('successful');
+  });
+
+
   app.listen(3000, function () {
 	console.log('Listening on port 3000');
 })

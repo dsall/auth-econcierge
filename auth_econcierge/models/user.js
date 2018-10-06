@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
 const Users = mongoose.Schema({
-    username: { type: String, required: true },
-    password: { type: String, required: true },
+    username: { type: String},
+    password: { type: String },
+    facebook: {type: String},
 });
 
 Users.methods.generateHash = function(password){
